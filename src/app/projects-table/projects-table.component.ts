@@ -30,7 +30,9 @@ export class ProjectsTableComponent implements OnInit {
   
     console.log(data);
   }
-
+searchedData(data){
+this.tableData=data;
+}
   generator(num){
     return new Array(num);
   }

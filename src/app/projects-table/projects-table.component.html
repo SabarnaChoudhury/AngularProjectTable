@@ -4,7 +4,7 @@
     <new-employee [parentData]="tableData" (sendNewData)="receiveNewData($event)"></new-employee>
   </div>
   <div class="container col-9" id="container">
-    <projects-navbar></projects-navbar>
+    <projects-navbar [tableData]="tableData" (sendSearchedData)="searchedData($event)"></projects-navbar>
     <table class="table table-striped">
       <thead></thead>
       <tbody>
