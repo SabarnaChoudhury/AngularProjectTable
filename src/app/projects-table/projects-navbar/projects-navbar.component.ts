@@ -1,4 +1,7 @@
+
+import { DataserviceService } from './../../dataservice.service';
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { filter, map } from "rxjs/operators";
 
 @Component({
   selector: 'projects-navbar',
@@ -9,16 +12,22 @@ export class ProjectsNavbarComponent implements OnInit {
 @Input() tableData=[];
 @Output() sendSearchedData: EventEmitter<object> = new EventEmitter<object>();
 searchedData=[];
-  constructor() { }
+serviceData;
+  constructor(public service:DataserviceService) {}
 
-  ngOnInit(): void {
-  }
-
-  search(s){
-    console.log(s.value.Search);
-    console.log(this.tableData);
-    this.searchedData=this.tableData.filter(item=>item.projectName==s.value.Search);
-    console.log(this.searchedData);
-    this.sendSearchedData.emit(this.searchedData);
-  }
+  ngOnInit(){}
+  
+  search(key){
+    this.service.getToDos()
+    .pipe(
+      map(item=>(item as any[]).filter(data=>data.projectName==key.value.Search))
+    ).subscribe(response=>this.searchedData=response);
+    console.log(key.value.Search);
+      
+    // this.searchedData=this.tableData.filter(item=>item.projectName==key.value.Search);
+    setTimeout(() => {
+      this.sendSearchedData.emit(this.searchedData);
+    }, 1000);
+    
+    }
 }
