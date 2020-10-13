@@ -1,5 +1,5 @@
-import { HttpClient } from '@angular/common/http';
-import { Component, OnInit, EventEmitter, Output, Input } from '@angular/core';
+import { Component,EventEmitter, Output, Input } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'new-employee',
@@ -9,8 +9,14 @@ import { Component, OnInit, EventEmitter, Output, Input } from '@angular/core';
 export class NewEmployeeComponent {
   @Input() parentData = []
   @Output() sendNewData: EventEmitter<object> = new EventEmitter<object>();
-  constructor(private http:HttpClient){
+  constructor(){
   }
+
+  form=new FormGroup({
+    projectName:new FormControl('',Validators.required),
+    teamMember:new FormControl('',[Validators.required,Validators.min(3)]),
+    projectProgress:new FormControl('',Validators.required)
+  })
 
   insert(f) {
     this.parentData.push({
@@ -22,6 +28,7 @@ export class NewEmployeeComponent {
       checked: f.value.projectProgress >= 50 ? false : true
     });
     this.sendNewData.emit(this.parentData);
-    f.reset();
+  
+    console.log(this.form);
   }
 }

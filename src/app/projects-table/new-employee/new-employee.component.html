@@ -1,14 +1,39 @@
-<form #form_element="ngForm">
+<form #form_element="ngForm" [formGroup]="form">
     <label for="projectName">Enter Project Name:</label>
-    <input type="text" class="form-control" id="projectName" name="projectName" ngModel #projectName>
+    <select class="form-control" formControlName="projectName">
+        <option>Angular JS</option>
+        <option>React JS</option>
+        <option>MongoDB</option>
+        <option>Node JS</option>
+        <option>HTML5 & CSS3</option>
+        <option>Bootstrap 5</option>
+    </select>
+    <div class="textAlert" *ngIf="form.get('projectName').touched && form.get('projectName').invalid">
+        <div class="textAlert" *ngIf="form.get('projectName').errors.required">
+            Please enter the Project Name!!!
+        </div>
+    </div>
     <label for="teamMember">Enter no. of Team Members:</label>
-    <input type="number" class="form-control" id="teamMember" name="teamMember" ngModel #teamMembers>
+    <input type="number" class="form-control" id="teamMember" formControlName="teamMember">
+    <div class="textAlert" *ngIf="form.get('teamMember').touched && form.get('teamMember').invalid">
+        <div class="textAlert" *ngIf="form.get('teamMember').errors.required">
+            Please enter no. of team members!!!
+        </div>
+        <div class="textAlert" *ngIf="form.get('teamMember').errors.min">
+        No. of team members should be minimum 3
+        </div>
+
+    </div>
     <label for="projectProgress">Enter Project Progress:</label>
-    <input type="number" class="form-control" id="projectProgress" name="projectProgress" ngModel #projectProgress>
+    <input type="number" class="form-control" id="projectProgress" formControlName="projectProgress">
+    <div class="textAlert" *ngIf="form.get('projectProgress').touched && form.get('projectProgress').invalid">
+        <div class="textAlert" *ngIf="form.get('projectProgress').errors.required">
+            Please enter progression % of the project!!!
+        </div>
+    </div>
     <br>
     <div class="d-flex justify-content-end">
-        <button class="btn btn-info btn-block" (click)="insert(form_element)">Insert</button>
+        <button class="btn btn-info btn-block" [disabled]="!form.valid" (click)="insert(form_element)">Insert</button>
     </div>
-    
+
 </form>
-    

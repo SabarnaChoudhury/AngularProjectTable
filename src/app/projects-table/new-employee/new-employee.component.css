@@ -1,0 +1,7 @@
+.textAlert{
+    color:red;
+    font-size: small;
+}
+.form-control.ng-invalid.ng-touched{
+    border:1px solid red;
+}

@@ -18,16 +18,9 @@ serviceData;
   ngOnInit(){}
   
   search(key){
-    this.service.getToDos()
-    .pipe(
-      map(item=>(item as any[]).filter(data=>data.projectName==key.value.Search))
-    ).subscribe(response=>this.searchedData=response);
-    console.log(key.value.Search);
       
-    // this.searchedData=this.tableData.filter(item=>item.projectName==key.value.Search);
-    setTimeout(() => {
-      this.sendSearchedData.emit(this.searchedData);
-    }, 1000);
+    this.searchedData=this.tableData.filter(item=>item.projectName==key.value.Search);
+    this.searchedData.length!=0?this.sendSearchedData.emit(this.searchedData):alert("No Data Found!!");
     
     }
 }
