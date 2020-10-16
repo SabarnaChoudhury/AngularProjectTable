@@ -16,7 +16,6 @@ export class ProjectsTableComponent implements OnInit  {
   //   })
 
     constructor(public service:DataserviceService) { 
-      
     }
 
     ngOnInit(){
@@ -24,7 +23,6 @@ export class ProjectsTableComponent implements OnInit  {
     }
 
   receiveData(data){
-    console.log(data);
     this.tableData=data;
   }
 

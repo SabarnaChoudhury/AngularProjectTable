@@ -1,5 +1,5 @@
 <div class="row">
-  <div class="col-3">
+  <div class="col-3 newEmp">
     <h3 class="mb-2">Insert Project Details</h3>
     <new-employee [parentData]="tableData" (sendNewData)="receiveNewData($event)"></new-employee>
   </div>
@@ -26,7 +26,7 @@
             <p>{{row.projectProgress}}% Complete</p>
           </td>
           <td> <button type="button" class="btn"
-              [class]="row.Status=='On Track'?'btn-success':'btn-danger'">{{row.Status}}</button>
+              [class]="row.Status=='On Track'?'btn-success':'btn-danger'"><a class="track" [routerLink]="['AngularJS',row.serialNumber]">{{row.Status}}</a></button>
           </td>
           <td>
             <input type="checkbox" [(ngModel)]="row.checked" [checked]="row.checked">

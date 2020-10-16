@@ -13,6 +13,7 @@ import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ProjectsComponent } from './projects/projects.component';
+import { AngularJSComponent } from './angular-js/angular-js.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { ProjectsComponent } from './projects/projects.component';
     EmployeeDetailsComponent,
     NewEmployeeComponent,
     ProjectsComponent,
+    AngularJSComponent,
     
   ],
   imports: [
@@ -39,11 +41,16 @@ import { ProjectsComponent } from './projects/projects.component';
       {
         path:'projects',
         component:ProjectsComponent
+      },
+      {
+        path:'AngularJS/:serialNumber',
+        component:AngularJSComponent
+
       }
     ])
   ],
   providers: [
-    DataserviceService
+    DataserviceService,
   ],
   bootstrap: [AppComponent]
 })
